@@ -12,9 +12,11 @@ test_data = datasets.MNIST(root='./data', train=False, transform=transform, down
 train_loader = DataLoader(dataset=train_data, batch_size=32, shuffle=True)
 test_loader = DataLoader(dataset=test_data, batch_size=32, shuffle=True)
 
+#params for nn
 epochs = 20
 learning_rate = 0.5
 
+#creating, training and evaluating on test data
 cnn = CNN.CNN()
 cnn.train_network(train_loader, epochs, learning_rate)
 cnn.evaluate(test_loader)

@@ -14,13 +14,16 @@ class CNN(nn.Module):
         #pooling
         self.pool = nn.MaxPool2d(kernel_size=2, stride=2, padding=0)
 
+        #dropout
+        self.dropout = nn.Dropout2d(p=0.5)
+
         #fully connected layers
         self.fc1 = nn.Linear(64 * 7 * 7, 128)
         self.fc2 = nn.Linear(128, 10)
 
     def forward(self, x):
         #two conv layers with polling -> output is 64 feature maps, size 7x7
-        x = self.pool(nn.functional.relu(self.conv1(x)))
+        x = self.pool(self.dropout(nn.functional.relu(self.conv1(x))))
         x = self.pool(nn.functional.relu(self.conv2(x)))
 
         #flattening of images x.size->batch size, -1 -> 64 * 7 * 7
@@ -35,6 +38,8 @@ class CNN(nn.Module):
         self.train()
 
         optimizer = optim.SGD(self.parameters(), learning_rate)
+        # optimizer = optim.Adagrad(self.parameters(), learning_rate)
+        # optimizer = optim.Adam(self.parameters(), learning_rate)
 
         for epoch in range(epochs):
             loss_during_train = 0

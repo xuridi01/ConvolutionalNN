@@ -1,0 +1,189 @@
+Experiments with different activation functions on datasets MNIST and CIFAR-10 (CNN)
+---MNIST---
+
+Starting params:
+-Epochs: 10
+-Learning rate: 0.005
+-Batch size: 32
+-Optimizer: ADAM
+-Loss function: CrossEntropy
+
+
+RELU:
+
+Epoch [1/10], Loss: 0.1371
+Epoch [2/10], Loss: 0.0593
+Epoch [3/10], Loss: 0.0451
+Epoch [4/10], Loss: 0.0393
+Epoch [5/10], Loss: 0.0352
+Epoch [6/10], Loss: 0.0323
+Epoch [7/10], Loss: 0.0288
+Epoch [8/10], Loss: 0.0272
+Epoch [9/10], Loss: 0.0262
+Epoch [10/10], Loss: 0.0253
+Correct: 9834/10000
+
+SIGMOID:
+
+Epoch [1/10], Loss: 2.3318
+Epoch [2/10], Loss: 2.3311
+Epoch [3/10], Loss: 2.3306
+Epoch [4/10], Loss: 2.3325
+Epoch [5/10], Loss: 2.3331
+Epoch [6/10], Loss: 2.3308
+Epoch [7/10], Loss: 2.3296
+Epoch [8/10], Loss: 2.3318
+Epoch [9/10], Loss: 2.3315
+Epoch [10/10], Loss: 2.3301
+Correct: 1032/10000
+
+ELU:
+
+Epoch [1/10], Loss: 0.1736
+Epoch [2/10], Loss: 0.1329
+Epoch [3/10], Loss: 0.1524
+Epoch [4/10], Loss: 0.1305
+Epoch [5/10], Loss: 0.1244
+Epoch [6/10], Loss: 0.1229
+Epoch [7/10], Loss: 0.1329
+Epoch [8/10], Loss: 0.1163
+Epoch [9/10], Loss: 0.1025
+Epoch [10/10], Loss: 0.1321
+Correct: 9795/10000
+
+SELU:
+
+Epoch [1/10], Loss: 0.1225
+Epoch [2/10], Loss: 0.0705
+Epoch [3/10], Loss: 0.0613
+Epoch [4/10], Loss: 0.0650
+Epoch [5/10], Loss: 0.0589
+Epoch [6/10], Loss: 0.0596
+Epoch [7/10], Loss: 0.0612
+Epoch [8/10], Loss: 0.0500
+Epoch [9/10], Loss: 0.0648
+Epoch [10/10], Loss: 0.0552
+Correct: 9852/10000
+
+GELU:
+
+Epoch [1/10], Loss: 0.1260
+Epoch [2/10], Loss: 0.0946
+Epoch [3/10], Loss: 0.0693
+Epoch [4/10], Loss: 0.0718
+Epoch [5/10], Loss: 0.0704
+Epoch [6/10], Loss: 0.0680
+Epoch [7/10], Loss: 0.0654
+Epoch [8/10], Loss: 0.0588
+Epoch [9/10], Loss: 0.0629
+Epoch [10/10], Loss: 0.0697
+Correct: 9874/10000
+
+SILU:
+
+Epoch [1/10], Loss: 0.2079
+Epoch [2/10], Loss: 0.1861
+Epoch [3/10], Loss: 0.1869
+Epoch [4/10], Loss: 0.1754
+Epoch [5/10], Loss: 0.1796
+Epoch [6/10], Loss: 0.1691
+Epoch [7/10], Loss: 0.1686
+Epoch [8/10], Loss: 0.1955
+Epoch [9/10], Loss: 0.1605
+Epoch [10/10], Loss: 0.1581
+Correct: 9741/10000
+
+
+---CIFAR-10---
+
+Starting params:
+-Epochs: 10
+-Learning rate: 0.005
+-Batch size: 32
+-Optimizer: ADAM
+-Loss function: CrossEntropy
+
+
+RELU:
+
+Epoch [1/10], Loss: 1.6886
+Epoch [2/10], Loss: 1.4478
+Epoch [3/10], Loss: 1.3374
+Epoch [4/10], Loss: 1.2625
+Epoch [5/10], Loss: 1.2097
+Epoch [6/10], Loss: 1.1619
+Epoch [7/10], Loss: 1.1206
+Epoch [8/10], Loss: 1.0835
+Epoch [9/10], Loss: 1.0458
+Epoch [10/10], Loss: 1.0168
+Correct: 5643/10000
+
+SIGMOID:
+
+Epoch [1/10], Loss: 2.4339
+Epoch [2/10], Loss: 2.4315
+Epoch [3/10], Loss: 2.4341
+Epoch [4/10], Loss: 2.4340
+Epoch [5/10], Loss: 2.4262
+Epoch [6/10], Loss: 2.4342
+Epoch [7/10], Loss: 2.4339
+Epoch [8/10], Loss: 2.4236
+Epoch [9/10], Loss: 2.4282
+Epoch [10/10], Loss: 2.4385
+Correct: 1000/10000
+
+ELU:
+
+Epoch [1/10], Loss: 1.6567
+Epoch [2/10], Loss: 1.4463
+Epoch [3/10], Loss: 1.3321
+Epoch [4/10], Loss: 1.2702
+Epoch [5/10], Loss: 1.2512
+Epoch [6/10], Loss: 1.1801
+Epoch [7/10], Loss: 1.1568
+Epoch [8/10], Loss: 1.1420
+Epoch [9/10], Loss: 1.1262
+Epoch [10/10], Loss: 1.0992
+Correct: 5832/10000
+
+SELU:
+
+Epoch [1/10], Loss: 1.4612
+Epoch [2/10], Loss: 1.2337
+Epoch [3/10], Loss: 1.0494
+Epoch [4/10], Loss: 0.9596
+Epoch [5/10], Loss: 0.8858
+Epoch [6/10], Loss: 0.8184
+Epoch [7/10], Loss: 0.7767
+Epoch [8/10], Loss: 0.7549
+Epoch [9/10], Loss: 0.7038
+Epoch [10/10], Loss: 0.6401
+Correct: 6721/10000
+
+GELU:
+
+Epoch [1/10], Loss: 1.4499
+Epoch [2/10], Loss: 1.1399
+Epoch [3/10], Loss: 1.0228
+Epoch [4/10], Loss: 0.9378
+Epoch [5/10], Loss: 0.8607
+Epoch [6/10], Loss: 0.8372
+Epoch [7/10], Loss: 0.7686
+Epoch [8/10], Loss: 0.7398
+Epoch [9/10], Loss: 0.7039
+Epoch [10/10], Loss: 0.6671
+Correct: 6437/10000
+
+SILU:
+
+Epoch [1/10], Loss: 1.9081
+Epoch [2/10], Loss: 1.7326
+Epoch [3/10], Loss: 2.5386
+Epoch [4/10], Loss: 1.7055
+Epoch [5/10], Loss: 1.5638
+Epoch [6/10], Loss: 1.5817
+Epoch [7/10], Loss: 1.5289
+Epoch [8/10], Loss: 1.5027
+Epoch [9/10], Loss: 1.5234
+Epoch [10/10], Loss: 1.4471
+Correct: 5418/10000

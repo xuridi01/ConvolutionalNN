@@ -5,10 +5,11 @@ from torch.nn.modules.module import T
 
 
 class CNN(nn.Module):
-    def __init__(self):
+    def __init__(self, activation_fun, in_ch, fc_in, fc_hidden):
         super(CNN, self).__init__()
+        self.activation_fun = activation_fun
         #convolutional layers
-        self.conv1 = nn.Conv2d(in_channels=1, out_channels=32, kernel_size=3, stride=1, padding=1)
+        self.conv1 = nn.Conv2d(in_channels=in_ch, out_channels=32, kernel_size=3, stride=1, padding=1)
         self.conv2 = nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3, stride=1, padding=1)
 
         #pooling
@@ -18,28 +19,28 @@ class CNN(nn.Module):
         self.dropout = nn.Dropout2d(p=0.5)
 
         #fully connected layers
-        self.fc1 = nn.Linear(64 * 7 * 7, 128)
-        self.fc2 = nn.Linear(128, 10)
+        self.fc1 = nn.Linear(64*fc_in, fc_hidden)
+        self.fc2 = nn.Linear(fc_hidden, 10)
 
     def forward(self, x):
-        #two conv layers with polling -> output is 64 feature maps, size 7x7
-        x = self.pool(self.dropout(nn.functional.relu(self.conv1(x))))
-        x = self.pool(nn.functional.relu(self.conv2(x)))
+        #two conv layers with polling
+        x = self.pool(self.activation_fun(self.conv1(x)))
+        x = self.pool(self.activation_fun(self.conv2(x)))
 
         #flattening of images x.size->batch size, -1 -> 64 * 7 * 7
         x = x.view(x.size(0), -1)
 
         #fully connected layers
-        x = nn.functional.relu(self.fc1(x))
+        x = self.activation_fun(self.fc1(x))
         x = self.fc2(x)
         return x
 
     def train_network(self, train_loader, epochs, learning_rate):
         self.train()
 
-        optimizer = optim.SGD(self.parameters(), learning_rate)
+        # optimizer = optim.SGD(self.parameters(), learning_rate)
         # optimizer = optim.Adagrad(self.parameters(), learning_rate)
-        # optimizer = optim.Adam(self.parameters(), learning_rate)
+        optimizer = optim.Adam(self.parameters(), learning_rate)
 
         for epoch in range(epochs):
             loss_during_train = 0
@@ -58,13 +59,12 @@ class CNN(nn.Module):
                 loss_during_train += loss.item()
 
             #print logs about learning
-            print(f'Epoch [{epoch + 1}/{epochs}], Loss: {loss_during_train / len(train_loader):.4f}')
+            with open('act_fun_log.txt', 'a') as f:
+                f.write(f'Epoch [{epoch + 1}/{epochs}], Loss: {loss_during_train / len(train_loader):.4f}\n')
 
-    def evaluate(self, test_loader, ):
+    def evaluate(self, test_loader, test_data_len):
         self.eval()
-
         correct = 0
-        total = 0
 
         with torch.no_grad():
             for image, label in test_loader:
@@ -76,6 +76,6 @@ class CNN(nn.Module):
                 for i in range(len(prediction)):
                     if prediction[i] == label[i]:
                         correct += 1
-                total += label.size(0)
 
-        print(f'Accuracy: {100 * correct / total:.2f}%')
+        with open('act_fun_log.txt', 'a') as f:
+            f.write(f'Correct: {correct}/{test_data_len}\n')
